@@ -1,0 +1,37 @@
+{
+  "name": "parking",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -w server.js server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "heroku-postbuild": "npm run build",
+    "lint": "jshint .",
+    "validate": "npm ls"
+  },
+  "repository": "https://github.com/kennycheew/parking.git",
+  "license": "MIT",
+  "dependencies": {
+    "antd": "^3.9.2",
+    "babel-plugin-import": "^1.9.1",
+    "babel-plugin-styled-components": "^1.5.1",
+    "express": "^4.16.3",
+    "express-basic-auth": "^1.1.5",
+    "firebase": "^5.5.0",
+    "firebase-admin": "^5.12.0",
+    "isomorphic-unfetch": "^2.0.0",
+    "js-cookie": "^2.2.0",
+    "next": "^6.1.2",
+    "nodemon": "^1.17.4",
+    "precommit-hook": "^3.0.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "styled-components": "^3.2.6"
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ]
+}
