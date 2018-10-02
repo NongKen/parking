@@ -21,23 +21,23 @@ const InputError = styled.div`
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
 
 const columns = [{
-  title: 'A',
+  title: 'ทะเบียน',
   dataIndex: 'a',
   width: 120
 }, {
-  title: 'B',
+  title: 'รถ',
   dataIndex: 'b',
   width: 120
 }, {
-  title: 'C',
+  title: 'ห้อง',
   dataIndex: 'c',
   width: 80
 }, {
-  title: 'D',
+  title: 'ชื่อ-นามสกุล',
   dataIndex: 'd',
   width: 200
 }, {
-  title: 'E',
+  title: 'โทรศัพท์',
   dataIndex: 'e',
   width: 100
 }];
@@ -85,7 +85,6 @@ class Home extends React.Component {
       this.setState({ loginError: true })
     }
   }
-
   
   render() {
     if (this.state.loading) {
@@ -132,22 +131,31 @@ class Home extends React.Component {
         </FullBackground>
       ) 
     }
-    return (
-      <FullBackground color="white">
-        <Context>
-          <Container>
-            <Table
-              dataSource={this.state.table}
-              columns={columns}
-              rowKey="id"
-              bordered
-              pagination={false}
-              scroll={{ y: true }}
-            />
-          </Container>
-        </Context>
-      </FullBackground>
-    )
+    if (window) {
+      const windowHeight = window.innerHeight
+      let tableHeadHeight = 0
+      if (document.getElementsByClassName("ant-table-thead")[0]) {
+        tableHeadHeight = document.getElementsByClassName("ant-table-thead")[0].clientHeight
+      }
+      console.log(windowHeight, tableHeadHeight)
+      return (
+        <FullBackground color="white">
+          <Context>
+            <Container>
+              <Table
+                dataSource={this.state.table}
+                columns={columns}
+                rowKey="id"
+                bordered
+                pagination={false}
+                scroll={{ y: windowHeight - tableHeadHeight}}
+              />
+            </Container>
+          </Context>
+        </FullBackground>
+      )
+    }
+    return null
   }
 }
 
